@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="FK-ReMask: Multi-property Feynman-Kac Steering of Crystal Diffusion Models">
+  <meta name="description" content="FK-ReMask steers a pretrained crystal diffusion model toward target properties at inference time, with Feynman-Kac particle selection and atom re-masking. No retraining.">
+  <meta name="keywords" content="crystal generation, diffusion models, inference-time steering, Feynman-Kac, materials discovery, band gap, MatterGen">
+  <meta name="author" content="Oded Mousai, Sapir Esther Yiflach, Barak Itzchak Davidovitch, Yuval Mualem, Sarit Kraus, Hannah-Noa Barad, Karsten Kreis, Gal Chechik">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Bar-Ilan University">
+  <meta property="og:title" content="Multi-property Feynman-Kac Steering of Crystal Diffusion Models">
+  <meta property="og:description" content="FK-ReMask steers a pretrained crystal diffusion model toward target properties at inference time, with Feynman-Kac particle selection and atom re-masking. No retraining.">
+  <meta property="og:url" content="https://odedmous.github.io/fkremask/">
+  <meta property="article:section" content="Research">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Multi-property Feynman-Kac Steering of Crystal Diffusion Models">
+  <meta name="twitter:description" content="FK-ReMask steers a pretrained crystal diffusion model toward target properties at inference time, with Feynman-Kac particle selection and atom re-masking. No retraining.">
+
+  <!-- Academic -->
+  <meta name="citation_title" content="Multi-property Feynman-Kac Steering of Crystal Diffusion Models">
+  <meta name="citation_author" content="Mousai, Oded">
+  <meta name="citation_author" content="Yiflach, Sapir Esther">
+  <meta name="citation_author" content="Davidovitch, Barak Itzchak">
+  <meta name="citation_author" content="Mualem, Yuval">
+  <meta name="citation_author" content="Kraus, Sarit">
+  <meta name="citation_author" content="Barad, Hannah-Noa">
+  <meta name="citation_author" content="Kreis, Karsten">
+  <meta name="citation_author" content="Chechik, Gal">
+  <meta name="citation_publication_date" content="2026">
+
+  <meta name="theme-color" content="#2563eb">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <title>FK-ReMask: Multi-property Feynman-Kac Steering of Crystal Diffusion Models</title>
+
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <style>
+    .figure-block { margin: 1.5rem 0 2.5rem; }
+    .figure-block img { width: 100%; border-radius: 6px; }
+    .figure-caption { font-size: 0.95rem; color: #4a4a4a; margin-top: 0.6rem; text-align: left; }
+    .link-block .button[disabled] { opacity: 0.55; cursor: default; }
+    .teaser video { width: 100%; border-radius: 8px; box-shadow: 0 2px 14px rgba(0,0,0,0.08); }
+    .affiliations { font-size: 1.05rem; color: #555; margin-top: 0.4rem; }
+  </style>
+</head>
+<body>
+
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main id="main-content">
+
+  <!-- Title, authors, links -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">FK-ReMask</h1>
+            <h2 class="title is-3 publication-title">Multi-property Feynman-Kac Steering of Crystal Diffusion Models</h2>
+            <div class="is-size-5 publication-authors">
+              <!-- TODO: add personal links (wrap each name in <a href="...">) -->
+              <span class="author-block">Oded Mousai<sup>1</sup>,</span>
+              <span class="author-block">Sapir Esther Yiflach<sup>1</sup>,</span>
+              <span class="author-block">Barak Itzchak Davidovitch<sup>1</sup>,</span>
+              <span class="author-block">Yuval Mualem<sup>1</sup>,</span>
+              <span class="author-block">Sarit Kraus<sup>1</sup>,</span>
+              <span class="author-block">Hannah-Noa Barad<sup>1</sup>,</span>
+              <span class="author-block">Karsten Kreis<sup>2</sup>,</span>
+              <span class="author-block">Gal Chechik<sup>1,2</sup></span>
+            </div>
+            <div class="affiliations">
+              <span class="author-block"><sup>1</sup>Bar-Ilan University</span>&nbsp;&nbsp;
+              <span class="author-block"><sup>2</sup>NVIDIA</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- TODO: replace "#" with https://arxiv.org/pdf/<ID> and remove disabled -->
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark" disabled title="Coming soon">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper (soon)</span>
+                  </a>
+                </span>
+                <!-- TODO: replace "#" with https://arxiv.org/abs/<ID> and remove disabled -->
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark" disabled title="Coming soon">
+                    <span class="icon"><i class="ai ai-arxiv"></i></span>
+                    <span>arXiv (soon)</span>
+                  </a>
+                </span>
+                <!-- TODO: point to https://github.com/OdedMous/fkremask once the code is on main -->
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark" disabled title="Coming soon">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code (soon)</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teaser video -->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <video id="teaser" poster="static/images/teaser_poster.jpg" autoplay controls muted loop playsinline preload="metadata">
+          <source src="static/videos/fkremask_teaser.mp4" type="video/mp4">
+        </video>
+        <h2 class="subtitle has-text-centered" style="margin-top:1rem">
+          FK-ReMask steering generation toward a 2.4&nbsp;eV band gap.
+          <b>Left:</b> the predicted band gap of every particle over the denoising process; the blue line is the lineage of the emitted crystal.
+          <b>Bottom:</b> one group of eight particles, with low-reward particles killed and high-reward ones cloned.
+          <b>Right:</b> the selected structure as the model sees it at each step, ending in its conventional cell.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Pretrained diffusion models provide powerful priors for generating new materials, including inorganic crystals, but generating useful materials requires satisfying specific chemical and physical properties, from mechanical stiffness to band gaps. Existing approaches either retrain models for new target properties or steer only the atom coordinates and lattice during generation, leaving composition unchanged despite its fundamental role in determining physical properties. We present <b>FK-ReMask</b>, an inference-time, gradient-free method that steers both the continuous and discrete channels of a pretrained crystal diffusion model. During generation, FK-ReMask maintains multiple denoising trajectories and replicates promising candidates using Feynman&ndash;Kac particle selection. However, selection alone is insufficient: in the atom-type channel, committed elements cannot be revised, so cloning propagates existing compositions and limits the population's ability to explore new ones. We address this with an atom re-masking mechanism, which reopens committed sites during the generation process and allows alternative compositions to emerge. Across four electronic, photovoltaic, and mechanical objectives, our method improves the yield of SUN (stable, unique, novel) and property-on-target materials. We further demonstrate joint steering of three photovoltaic properties, showing that multiple physical objectives can be specified entirely at inference time without retraining.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Method -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Method</h2>
+      <div class="figure-block">
+        <img src="static/images/fig_method_selection.png" alt="Overview of FK-ReMask" loading="lazy">
+        <p class="figure-caption"><b>Overview of FK-ReMask.</b> (a) Within a single trajectory, the model denoises the crystal while atom re-masking reopens committed atom sites, so the composition can still change. (b) Across trajectories, reward-guided Feynman&ndash;Kac selection prunes weak candidates and clones promising ones.</p>
+      </div>
+      <div class="figure-block">
+        <img src="static/images/fig_remask_stacked_4p_v5.png" alt="Atom re-masking under selection" loading="lazy">
+        <p class="figure-caption"><b>Atom re-masking under selection.</b> Four particles go through denoising, selection and re-masking; cells show the element at each atom site. (a) Without re-masking, selection hands the winning particles more slots, which reduces the diversity of the final compositions. (b) With re-masking, committed sites reopen inside the re-masking window, yielding four distinct formulas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Results</h2>
+      <div class="figure-block">
+        <img src="static/images/fig_property_densities.png" alt="Distribution of target properties" loading="lazy">
+        <p class="figure-caption"><b>Distribution of target properties.</b> Property histograms of crystals generated by each method, with the on-target region shaded. For solar-cell efficiency and hole effective mass, only gapped structures (E<sub>g</sub> &ge; 0.5&nbsp;eV) are plotted, since these properties do not apply to metals; percentages are over all 512 generated crystals.</p>
+      </div>
+      <div class="figure-block">
+        <img src="static/images/fig_remask_two.png" alt="Band-gap steering with and without re-masking" loading="lazy">
+        <p class="figure-caption"><b>Band-gap steering with and without re-masking.</b> Dashed lines mark where selection and re-masking begin. (a) Selection collapses the population; with re-masking on, diversity is restored. (b) Re-masking reaches a higher mean particle reward.</p>
+      </div>
+      <div class="figure-block">
+        <img src="static/images/fig_solar_structures.png" alt="Example crystals generated by FK-ReMask" loading="lazy">
+        <p class="figure-caption"><b>Example crystals generated by FK-ReMask</b> under joint steering of three photovoltaic properties (band gap, solar-cell efficiency and hole effective mass). Property values are predicted with pretrained ML models.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BibTeX -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div class="bibtex-header">
+        <h2 class="title">BibTeX</h2>
+        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+          <i class="fas fa-copy"></i>
+          <span class="copy-text">Copy</span>
+        </button>
+      </div>
+      <!-- TODO: add eprint / url once the arXiv ID exists -->
+      <pre id="bibtex-code"><code>@article{mousai2026fkremask,
+  title   = {Multi-property Feynman-Kac Steering of Crystal Diffusion Models},
+  author  = {Mousai, Oded and Yiflach, Sapir Esther and Davidovitch, Barak Itzchak and
+             Mualem, Yuval and Kraus, Sarit and Barad, Hannah-Noa and Kreis, Karsten and
+             Chechik, Gal},
+  journal = {arXiv preprint},
+  year    = {2026}
+}</code></pre>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
