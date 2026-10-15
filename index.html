@@ -7,7 +7,7 @@
   <!-- Primary Meta Tags -->
   <meta name="title" content="FK-ReMask: Multi-property Feynman-Kac Steering of Crystal Diffusion Models">
   <meta name="description" content="FK-ReMask steers a pretrained crystal diffusion model toward target properties at inference time, with Feynman-Kac particle selection and atom re-masking. No retraining.">
-  <meta name="keywords" content="crystal generation, diffusion models, inference-time steering, Feynman-Kac, materials discovery, band gap, MatterGen">
+  <meta name="keywords" content="crystal generation, diffusion models, inference-time steering, Feynman-Kac, materials discovery, bandgap, MatterGen">
   <meta name="author" content="Oded Mousai, Sapir Esther Yiflach, Barak Itzchak Davidovitch, Yuval Mualem, Sarit Kraus, Hannah-Noa Barad, Karsten Kreis, Gal Chechik">
   <meta name="robots" content="index, follow">
   <meta name="language" content="English">
@@ -159,8 +159,8 @@
           <source src="static/videos/fkremask_teaser.mp4" type="video/mp4">
         </video>
         <h2 class="subtitle has-text-centered teaser-caption" style="margin-top:1rem">
-          FK-ReMask steering generation toward a 2.4&nbsp;eV band gap.
-          <b>Left:</b> the predicted band gap of every particle over the denoising process; the blue line is the lineage of the emitted crystal.
+          FK-ReMask steering generation toward a 2.4&nbsp;eV bandgap.
+          <b>Left:</b> the predicted bandgap of every particle over the denoising process; the blue line is the lineage of the emitted crystal.
           <b>Bottom:</b> one group of eight particles, with low-reward particles killed (red) and high-reward ones cloned (green).
           <b>Right:</b> the winning crystal as the model sees it at each step, ending in its conventional cell.
         </h2>
@@ -176,7 +176,7 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Pretrained diffusion models provide powerful priors for generating new materials, including inorganic crystals, but generating useful materials requires satisfying specific chemical and physical properties, from mechanical stiffness to band gaps. Existing approaches either retrain models for new target properties or steer only the atom coordinates and lattice during generation, leaving composition unchanged despite its fundamental role in determining physical properties. We present <b>FK-ReMask</b>, an inference-time, gradient-free method that steers both the continuous and discrete channels of a pretrained crystal diffusion model. During generation, FK-ReMask maintains multiple denoising trajectories and replicates promising candidates using Feynman&ndash;Kac particle selection. However, selection alone is insufficient: in the atom-type channel, committed elements cannot be revised, so cloning propagates existing compositions and limits the population's ability to explore new ones. We address this with an atom re-masking mechanism, which reopens committed sites during the generation process and allows alternative compositions to emerge. Across four electronic, photovoltaic, and mechanical objectives, our method improves the yield of SUN (stable, unique, novel) and property-on-target materials. We further demonstrate joint steering of three photovoltaic properties, showing that multiple physical objectives can be specified entirely at inference time without retraining.
+              Pretrained diffusion models provide powerful priors for generating new materials, including inorganic crystals, but generating useful materials requires satisfying specific chemical and physical properties, from mechanical stiffness to bandgaps. Existing approaches either retrain models for new target properties or steer only the atom coordinates and lattice during generation, leaving composition unchanged despite its fundamental role in determining physical properties. We present <b>FK-ReMask</b>, an inference-time, gradient-free method that steers both the continuous and discrete channels of a pretrained crystal diffusion model. During generation, FK-ReMask maintains multiple denoising trajectories and replicates promising candidates using Feynman&ndash;Kac particle selection. However, selection alone is insufficient: in the atom-type channel, committed elements cannot be revised, so cloning propagates existing compositions and limits the population's ability to explore new ones. We address this with an atom re-masking mechanism, which reopens committed sites during the generation process and allows alternative compositions to emerge. Across four electronic, photovoltaic, and mechanical objectives, our method improves the yield of SUN (stable, unique, novel) and property-on-target materials. We further demonstrate joint steering of three photovoltaic properties, showing that multiple physical objectives can be specified entirely at inference time without retraining.
             </p>
           </div>
         </div>
@@ -211,7 +211,7 @@
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Single-Objective Steering</h2>
       <div class="section-intro">
-        <p><b>Goal:</b> generate stable, novel crystals that hit one requested property: band gap, solar-cell efficiency, hole effective mass or bulk modulus.</p>
+        <p><b>Goal:</b> generate stable, novel crystals that hit one requested property: bandgap, solar-cell efficiency, hole effective mass or bulk modulus.</p>
         <p><b>Result:</b> FK-ReMask produces the most stable, on-target crystals on all four properties, clearly ahead of Best-of-N at the same compute. Re-masking keeps the population diverse after selection.</p>
       </div>
       <div class="figure-block">
@@ -219,8 +219,8 @@
         <p class="figure-caption"><b>Distribution of target properties.</b> Property histograms of crystals generated by each method, with the on-target region shaded.</p>
       </div>
       <div class="figure-block">
-        <img src="static/images/fig_remask_two.png" alt="Band-gap steering with and without re-masking" loading="lazy">
-        <p class="figure-caption"><b>Band-gap steering with and without re-masking.</b> Dashed lines mark where selection and re-masking begin. (a) Selection collapses the population; with re-masking on, diversity is restored. (b) Re-masking reaches a higher mean particle reward.</p>
+        <img src="static/images/fig_remask_two.png" alt="Bandgap steering with and without re-masking" loading="lazy">
+        <p class="figure-caption"><b>Bandgap steering with and without re-masking.</b> Dashed lines mark where selection and re-masking begin. (a) Selection collapses the population; with re-masking on, diversity is restored. (b) Re-masking reaches a higher mean particle reward.</p>
       </div>
     </div>
   </section>
@@ -230,7 +230,7 @@
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Multi-Objective Steering</h2>
       <div class="section-intro">
-        <p><b>Goal:</b> design solar-cell materials by hitting three properties at once: band gap, solar-cell efficiency and hole effective mass.</p>
+        <p><b>Goal:</b> design solar-cell materials by hitting three properties at once: bandgap, solar-cell efficiency and hole effective mass.</p>
         <p><b>Result:</b> MatterGen almost never meets all three targets. FK-ReMask meets them far more often than Best-of-N, while also producing more stable crystals.</p>
       </div>
       <div class="figure-block">
@@ -251,7 +251,7 @@
       </div>
       <div class="figure-block">
         <img src="static/images/fig_solar_structures.png" alt="Example crystals generated by FK-ReMask" loading="lazy">
-        <p class="figure-caption"><b>Example crystals generated by FK-ReMask</b> under joint steering of three photovoltaic properties (band gap, solar-cell efficiency and hole effective mass). Property values are predicted with pretrained ML models.</p>
+        <p class="figure-caption"><b>Example crystals generated by FK-ReMask</b> under joint steering of three photovoltaic properties (bandgap, solar-cell efficiency and hole effective mass). Property values are predicted with pretrained ML models.</p>
       </div>
     </div>
   </section>
