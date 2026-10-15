@@ -68,7 +68,9 @@
     .results-table { margin: 0 auto; font-size: 0.9rem; white-space: nowrap; }
     .results-table th, .results-table td { text-align: right; }
     .results-table th:first-child, .results-table td:first-child { text-align: left; }
-    .results-table th.group { text-align: center; border-bottom: 1px solid #bbb; }
+    .results-table thead tr:first-child th { border: none !important; padding-bottom: 0.1rem; }
+    .results-table thead tr:first-child th.group { text-align: center; border-bottom: 1.5px solid #555 !important; }
+    .results-table thead tr:nth-child(2) th { border-bottom: 1.5px solid #555 !important; }
     .results-table tr.ours { background: #f3f7ff; }
     .section-intro { font-size: 1.25rem; line-height: 1.6; margin: 0 0 1.5rem; text-align: left; }
     .section-intro p { margin-bottom: 0.7rem; }
