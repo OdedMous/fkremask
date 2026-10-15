@@ -74,6 +74,9 @@
     .section-intro p { margin-bottom: 0.7rem; }
     .section-intro ul { list-style: disc; margin: 0.3rem 0 0 1.4rem; }
     .section-intro li { margin-bottom: 0.4rem; }
+    .teaser-wide { width: 100%; max-width: 1500px; margin: 0 auto; }
+    .teaser-wide .hero-body { padding-left: 1rem; padding-right: 1rem; }
+    .teaser-caption { max-width: 960px; margin-left: auto; margin-right: auto; }
     .affiliations { font-size: 1.05rem; color: #555; margin-top: 0.4rem; }
   </style>
 </head>
@@ -142,12 +145,12 @@
 
   <!-- Teaser video -->
   <section class="hero teaser">
-    <div class="container is-max-desktop">
+    <div class="teaser-wide">
       <div class="hero-body">
         <video id="teaser" poster="static/images/teaser_poster.jpg" autoplay controls muted loop playsinline preload="metadata">
           <source src="static/videos/fkremask_teaser.mp4" type="video/mp4">
         </video>
-        <h2 class="subtitle has-text-centered" style="margin-top:1rem">
+        <h2 class="subtitle has-text-centered teaser-caption" style="margin-top:1rem">
           FK-ReMask steering generation toward a 2.4&nbsp;eV band gap.
           <b>Left:</b> the predicted band gap of every particle over the denoising process; the blue line is the lineage of the emitted crystal.
           <b>Bottom:</b> one group of eight particles, with low-reward particles killed and high-reward ones cloned.
