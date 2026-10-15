@@ -77,6 +77,12 @@
     .teaser-wide { width: 100%; max-width: 1250px; margin: 0 auto; }
     .teaser-wide .hero-body { padding-left: 1rem; padding-right: 1rem; }
     .teaser-caption { max-width: 100%; margin-left: auto; margin-right: auto; }
+    /* one body-text size for abstract, section text, captions and the video caption */
+    :root { --body-text: 1.2rem; }
+    .section-intro, .figure-caption, .teaser-caption, .content.has-text-justified, .content.has-text-justified p {
+      font-size: var(--body-text) !important; line-height: 1.6 !important; }
+    .figure-caption, .teaser-caption { color: var(--text-secondary, #4a4a4a); }
+    @media (max-width: 768px) { :root { --body-text: 1rem; } }
     .affiliations { font-size: 1.05rem; color: #555; margin-top: 0.4rem; }
   </style>
 </head>
